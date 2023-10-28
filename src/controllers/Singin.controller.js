@@ -29,11 +29,11 @@ export const create_token = (req, res) =>{
     if (data.user === user.user && data.password === user.password) { //Aqui se valida cuando este la base de datos
         const information = user
         // Cifrado
-        jwt.sign({information}, 'secretkey', {expiresIn: '120s'}, (error, token)=>{
+        jwt.sign({information}, 'secretkey', {expiresIn: '1h'}, (error, token)=>{
             if(error){
                 res.status(500).send("Can't create token");  
             }else{
-                res.cookie('token', token, { maxAge: 120000, httpOnly: true });
+                res.cookie('token', token, { maxAge: 3600000, httpOnly: true });
                 res.redirect('/i/users')
             }
         })

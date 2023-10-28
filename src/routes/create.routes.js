@@ -1,17 +1,10 @@
 import { Router } from "express";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import path from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { adduser, getinterfacecreate } from "../controllers/create.controller.js";
 
 const router = Router();
 
-
-router.get('/create', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/create.html'))
-});
-
-
+router
+    .route('/create')
+    .get(getinterfacecreate) 
+    .post(adduser)
 export default router

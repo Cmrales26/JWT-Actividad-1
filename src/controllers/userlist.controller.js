@@ -1,32 +1,45 @@
-import  jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import { pool } from "../db/db.js";
 
+let user = [];
 
-const users = [
-    { user: 'Nelson', email: 'nelson@gmail.com', cellphone: '300000000' },
-    { user: 'andrea', email: 'andrea@gmail.com', cellphone: '700000000' }
-]
+export const getusersfromdatabase = async () => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM user_data");
+
+    const modifiedRows = rows.map((row) => {
+      const { contraseña, ...rest } = row;
+      return rest;
+    });
+
+    user = modifiedRows;
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 export const getInformation = (req, res) => {
-    jwt.verify(req.token, 'secretkey', (error, authUser)=>{
-        if(error){
-            res.clearCookie("token")
-            return res.redirect('/')
-        }  else{
-            res.json(users)
-        }
-      })
-}
+  jwt.verify(req.token, "secretkey", (error, authUser) => {
+    if (error) {
+      res.clearCookie("token");
+      return res.redirect("/");
+    } else {
+      console.log(user);
+      res.json(user);
+    }
+  });
+};
 
 export const verifytoken = (req, res, next) => {
-    const token = req.cookies.token;
-    try {
-        req.token = token;
-        next();
-    } catch (error) {
-        res.clearCookie("token")
-        return res.redirect('/')
-    }
-}
+  const token = req.cookies.token;
+  try {
+    req.token = token;
+    next();
+  } catch (error) {
+    res.clearCookie("token");
+    return res.redirect("/");
+  }
+};
 
 // export const verifytoken = (req, res, next) => {
 //     const bearerHeader = req.headers['authorization']

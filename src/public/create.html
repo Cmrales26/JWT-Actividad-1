@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create an account</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Create an Account</h1>
     <div class="form">
-        <form action="http://localhost:5500/i/create" method="post">
-            <label for="user">User</label>
-            <input type="text" name="user" placeholder="User">
-            <label for="password">password</label>
-            <input type="password" name="password" placeholder="password">
-            <label for="validate password">validate password</label>
-            <input type="password" name="validate password" placeholder="Repeat the password">
-
-            <button>Create</button>
-        </form>
-        <p>Already have an account <a href="/">Login</a></p>
+      <form action="http://localhost:5500/i/create" method="post">
+        <label for="user">Username</label>
+        <input type="text" name="user" placeholder="Username" required />
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First name"
+          required
+        />
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" placeholder="Last name" required />
+        <label for="phone">Phone</label>
+        <input type="number" name="phone" placeholder="Phone" required />
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="Email" required />
+        <label for="password">password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+        <label for="validate_password">validate password</label>
+        <input
+          type="password"
+          name="validate_password"
+          placeholder="Repeat the password"
+          required
+        />
+        <button>Create</button>
+      </form>
+      <p>Already have an account <a href="/">Login</a></p>
     </div>
-</body>
+    <script src="../js/frontcreate.js"></script>
+  </body>
 </html>
