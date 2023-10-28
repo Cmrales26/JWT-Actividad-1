@@ -8,7 +8,7 @@ export const getusersfromdatabase = async () => {
     const [rows] = await pool.query("SELECT * FROM user_data");
 
     const modifiedRows = rows.map((row) => {
-      const { contraseña, ...rest } = row;
+      const { password, ...rest } = row;
       return rest;
     });
 
@@ -51,3 +51,5 @@ export const verifytoken = (req, res, next) => {
 //         res.sendStatus(403)
 //     }
 // }
+
+getusersfromdatabase()
