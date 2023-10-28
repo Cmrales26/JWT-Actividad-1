@@ -119,6 +119,12 @@ body {
     display: flex;
     justify-content: center;
 }
+.stayconect{
+    margin-bottom: 1rem;
+    & #staysign{
+        accent-color: #f4aa00;
+    } 
+}
 
 #SingIn-btn,
 #SingUp-btn {
