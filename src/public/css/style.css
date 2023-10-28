@@ -32,7 +32,6 @@ body {
 .singing {
     height: 100%;
     background-color: #ededed;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,11 +118,13 @@ body {
     display: flex;
     justify-content: center;
 }
-.stayconect{
+
+.stayconect {
     margin-bottom: 1rem;
-    & #staysign{
+
+    & #staysign {
         accent-color: #f4aa00;
-    } 
+    }
 }
 
 #SingIn-btn,
@@ -194,30 +195,34 @@ body {
     }
 }
 
-#body-table{
+#body-table {
     background-color: #ededed;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     background: #f4aa00;
-    & .cerrar{
+
+    & .cerrar {
         padding: 2rem;
-    }& .icon{
+    }
+
+    & .icon {
         padding: 2rem;
     }
 }
 
-.signout{
-   background: white;
-   padding: 5px 10px;
-   border: none !important;
-   border-radius: 10px; 
-   cursor: pointer;
+.signout {
+    background: white;
+    padding: 5px 10px;
+    border: none !important;
+    border-radius: 10px;
+    cursor: pointer;
 }
-.table{
+
+.table {
     padding: 5rem;
 }
 
@@ -235,6 +240,7 @@ body {
 #userTable tr:nth-child(odd) {
     background-color: #f4ab006f;
 }
+
 #userTable tr:nth-child(even) {
     background-color: white !important;
 }
@@ -245,4 +251,63 @@ body {
     text-align: center;
     background-color: #f4aa00;
     color: white;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 834px) {
+
+    .singing-container,
+    .singup-container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+
+    .singing-container,
+    .singup-container {
+        flex-wrap: nowrap;
+    }
+
+    .singup-container {
+        flex-direction: column-reverse;
+    }
+
+    #username-login,
+    #password-login,
+    #username,
+    #first-name,
+    #last-name,
+    #phone,
+    #email,
+    #password,
+    #password-check {
+        width: 100%;
+    }
+
+    #first-name,
+    #last-name,
+    #password,
+    #password-check {
+        width: 100%;
+    }
+
+    .table {
+        overflow: auto;
+        padding: 1rem;
+        max-width: 100%;
+        width: 100%;
+        font-size: 10px;
+    }
+
+    /* #userTable {
+        max-width: 50px;
+    }
+
+    #userTable th,
+    #userTable td {
+        white-space: nowrap;
+    } */
+
 }
