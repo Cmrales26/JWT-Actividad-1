@@ -3,6 +3,7 @@ import { dirname } from "path";
 import path from "path";
 import jwt from "jsonwebtoken";
 import { pool } from "../db/db.js";
+import bcrypt from "bcryptjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,25 +24,26 @@ export const create_token = async (req, res) => {
     [data.user]
   );
 
-  if (typeof rows[0].username === "undefined") {
-    res.status(401).send("User not found");
-  } else if ((await getpass(data.user)) !== data.password) {
-    res.status(401).send("User not found");
+  if (!rows || !rows[0] || typeof rows[0].username === "undefined") {
+    res.status(403).sendFile(path.join(__dirname, '../public/errors/403.html'));
   } else {
-    // Cifrado
-    jwt.sign(
-      {rows},
-      "secretkey",
-      { expiresIn: "1h" },
-      (error, token) => {
+    // obtengo la contraseña cifrada
+    let hashedpass = await getpass(data.user);
+
+    // Valido igualdad
+    if (decrypt(data.password, hashedpass)) {
+      // Token
+      jwt.sign({ rows }, "secretkey", { expiresIn: "120s" }, (error, token) => {
         if (error) {
           res.status(500).send("Can't create token");
         } else {
-          res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
+          res.cookie("token", token, { maxAge: 120000, httpOnly: true });
           res.redirect("/i/users");
         }
-      }
-    );
+      });
+    } else {
+      res.status(403).sendFile(path.join(__dirname, '../public/errors/403.html'));
+    }
   }
 };
 
@@ -52,3 +54,12 @@ const getpass = async (user) => {
   );
   return rows[0].password;
 };
+
+const decrypt = (password, hashed) => {
+  return bcrypt.compareSync(password, hashed);
+};
+
+export const logout = (req, res) => {
+  res.clearCookie("token");
+  res.redirect('/')
+}

@@ -7,4 +7,6 @@ router
     .route('/create')
     .get(getinterfacecreate) 
     .post(adduser)
+
+    
 export default router

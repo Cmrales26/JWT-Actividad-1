@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Sign in</title>
 </head>
-<body>
-    <h1>Login into Account</h1>
-    <div class="form">
-        <form action="http://localhost:5500/" method="post">
-            <label for="user">User</label>
-            <input type="text" name="user" placeholder="User" required>
-            <label for="password">password</label>
-            <input type="password" name="password" placeholder="password" required>
 
-            <button>Sing in</button>
-        </form>
-        <p>Don't have an account <a href="/i/create">Create one</a></p>
+<body>
+    <div class="singing-container">
+        <div class="singing column-1">
+            <h1>Sign in</h1>
+            <div class="form">
+                <form action="/" method="post">
+                    <div class="usernameform">
+                        <!-- <label for="user">User</label> -->
+                        <input type="text" id="username-login" name="user" placeholder="User" required>
+                    </div>
+                    <div class="passwordform">
+                        <!-- <label for="password">password</label> -->
+                        <input type="password" id="password-login" name="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="btnsingin">
+                        <button id="SingIn-btn">Sing in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="createan-account column">
+            <h1 class="Welcome">Welcome to <span>JWT</span> Login Interface</h1>
+            <p>New here?</p>
+            <a href="/i/create">Sign up</a>
+        </div>
     </div>
 </body>
+
 </html>

@@ -1,7 +1,15 @@
 import jwt from "jsonwebtoken";
 import { pool } from "../db/db.js";
 
-let user = [];
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import path from "path";
+import fs from 'fs';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 export const getusersfromdatabase = async () => {
   try {
@@ -12,24 +20,52 @@ export const getusersfromdatabase = async () => {
       return rest;
     });
 
-    user = modifiedRows;
+    return modifiedRows;
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-export const getInformation = (req, res) => {
-  jwt.verify(req.token, "secretkey", (error, authUser) => {
-    if (error) {
-      res.clearCookie("token");
-      return res.redirect("/");
-    } else {
-      console.log(user);
-      res.json(user);
-    }
-  });
-};
 
+export const getInformation = async (req, res) => {
+  try {
+    let users = await getusersfromdatabase();
+
+    jwt.verify(req.token, "secretkey", (error, authUser) => {
+      if (error) {
+        res.clearCookie("token");
+        return res.redirect("/");
+
+      } else {
+
+        fs.readFile(path.join(__dirname, '../public/table.html'), 'utf8', function (err, data) {
+          if (err) {
+            return res.status(500).json({ error: err.message });
+          }
+
+          // Asegúrate de que tienes al menos un usuario para evitar errores
+
+          if (users.length > 0) {
+            let headers = Object.keys(users[0]).map(key => `<th>${key}</th>`).join('');
+            let userRows = users.map(user => {
+              let userCells = Object.values(user).map(value => `<td>${value}</td>`).join('');
+              return `<tr>${userCells}</tr>`;
+            }).join('');
+
+            let output = data.replace('<!--userData-->', `${headers} ${userRows}`);
+
+            res.send(output);
+
+          } else {
+            res.send(data);
+          }
+        });
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 export const verifytoken = (req, res, next) => {
   const token = req.cookies.token;
   try {
@@ -40,16 +76,3 @@ export const verifytoken = (req, res, next) => {
     return res.redirect("/");
   }
 };
-
-// export const verifytoken = (req, res, next) => {
-//     const bearerHeader = req.headers['authorization']
-//     if (typeof bearerHeader !== 'undefined') {
-//         const bearerToken = bearerHeader.split(' ')[1]
-//         req.token = bearerToken
-//         next();
-//     } else {
-//         res.sendStatus(403)
-//     }
-// }
-
-getusersfromdatabase()
