@@ -43,12 +43,6 @@ export const create_token = async (req, res) => {
       }
     );
   }
-  // if (data.user === user.user && data.password === user.password) { //Aqui se valida cuando este la base de datos
-  //     const information = user
-
-  // }else{
-  //     res.status(401).send("User not found");
-  // }
 };
 
 const getpass = async (user) => {
