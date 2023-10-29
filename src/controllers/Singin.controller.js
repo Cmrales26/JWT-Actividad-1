@@ -34,7 +34,7 @@ export const create_token = async (req, res) => {
   );
 
   if (!rows || !rows[0] || typeof rows[0].username === "undefined") {
-    res.status(403).sendFile(path.join(__dirname, '../public/errors/403.html'));
+    res.status(403).json({error: 'Wrong credential'});
   } else {
     // obtengo la contraseña cifrada
     let hashedpass = await getpass(data.user);
@@ -49,7 +49,7 @@ export const create_token = async (req, res) => {
             res.status(500).send("Can't create token");
           } else {
             res.cookie("token", token, { maxAge: 120000, httpOnly: true });
-            res.redirect("/i/users");
+            res.json({redirect: "/i/users"});
           }
         });
       } else {
@@ -58,14 +58,14 @@ export const create_token = async (req, res) => {
             res.status(500).send("Can't create token");
           } else {
             res.cookie("token", token, { httpOnly: true });
-            res.redirect("/i/users");
+            res.json({redirect: "/i/users"});
           }
         });
         
       }
 
     } else {
-      res.status(403).sendFile(path.join(__dirname, '../public/errors/403.html'));
+      res.status(403).json({error: 'Wrong credentials'});
     }
   }
 };

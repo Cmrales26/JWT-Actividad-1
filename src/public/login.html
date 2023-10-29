@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Sign in</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -13,7 +16,7 @@
         <div class="singing column-1">
             <h1>Sign in</h1>
             <div class="form">
-                <form action="/" method="post">
+                <form action="/" method="post" id="login-form">
                     <div class="usernameform">
                         <!-- <label for="user">User</label> -->
                         <input type="text" id="username-login" name="user" placeholder="User" required>
@@ -23,12 +26,12 @@
                         <input type="password" id="password-login" name="password" placeholder="Password" required>
                     </div>
                     <div class="stayconect">
-                        <input type="checkbox" name="staysign" id="staysign"> 
+                        <input type="checkbox" name="staysign" id="staysign">
                         <label for="staysign">Stay Sign in</label>
                     </div>
 
                     <div class="btnsingin">
-                        <button id="SingIn-btn">Sing in</button> 
+                        <button id="SingIn-btn">Sing in</button>
                     </div>
                 </form>
             </div>
@@ -39,6 +42,10 @@
             <a href="/i/create">Sign up</a>
         </div>
     </div>
+
+
+    <script src="./js/controlfrontend.js"></script>
+
 </body>
 
 </html>

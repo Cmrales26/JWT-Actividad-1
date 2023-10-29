@@ -16,25 +16,25 @@ export const adduser = async (req, res) => {
 
   // Validations
   if (data.password !== data.validate_password) {
-    return res.json("Paswords are not the same");
+    res.status(401).json({ error: 'Passwords are not equals' });
+    return;
   }
 
   if ((await existuser(data.user)) === true) {
-    return res.json("The user name is already used");
+    res.status(401).json({ error: 'User already exists' });
+    return
   }
 
   let encrypted_pass = cryppass(data.password)
 
   try {
-      const [rows] = await pool.query(
-          "INSERT INTO user_data (username, password, first_name, last_name, phone, email)  VALUES (?,?,?,?,?,?)",
-          [data.user, encrypted_pass, data.first_name, data.last_name, data.phone, data.email]
-      );
-
-      res.redirect('/')
-
+    const [rows] = await pool.query(
+      "INSERT INTO user_data (username, password, first_name, last_name, phone, email)  VALUES (?,?,?,?,?,?)",
+      [data.user, encrypted_pass, data.first_name, data.last_name, data.phone, data.email]
+    );
+    res.json({ redirect: "/" });
   } catch (error) {
-      return res.status(500).json(error);
+    return res.status(500).json(error);
   }
 };
 

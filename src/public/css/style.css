@@ -228,7 +228,7 @@ body {
 .table {
     max-height: 100vh;
     overflow-y: auto;
-    padding: 4rem 3rem 5rem 5rem; 
+    padding: 4rem 3rem 5rem 5rem;
     scrollbar-gutter: stable;
 }
 
@@ -257,6 +257,10 @@ body {
     text-align: center;
     background-color: #f4aa00;
     color: white;
+}
+
+.alertwrongcredentials{
+    border-radius: 10px !important;
 }
 
 /* Responsive */
@@ -306,14 +310,4 @@ body {
         width: 100%;
         font-size: 10px;
     }
-
-    /* #userTable {
-        max-width: 50px;
-    }
-
-    #userTable th,
-    #userTable td {
-        white-space: nowrap;
-    } */
-
 }

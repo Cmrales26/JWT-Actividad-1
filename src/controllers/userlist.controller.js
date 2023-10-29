@@ -43,8 +43,6 @@ export const getInformation = async (req, res) => {
             return res.status(500).json({ error: err.message });
           }
 
-          // Asegúrate de que tienes al menos un usuario para evitar errores
-
           if (users.length > 0) {
             let headers = Object.keys(users[0]).map(key => `<th>${key}</th>`).join('');
             let userRows = users.map(user => {
