@@ -138,6 +138,7 @@ body {
     font-size: 15px;
     color: white;
     font-weight: 500;
+    transition: all .2s ease-in;
 }
 
 #SingUp-btn {
@@ -315,6 +316,41 @@ ul {
     text-align: center;
     padding: .2rem;
 }
+
+/* Hovers */
+
+#SingIn-btn:hover, #loginaccountluch:hover{
+    background-color: #f4ab00be;
+    font-weight: 700;
+    scale: 1.05;
+}
+#createaccountluch, #loginaccountluch:hover {
+    transition: all .25s ease-in;
+}
+#createaccountluch:hover, #SingUp-btn:hover{
+    background-color: #edededcc;
+    font-weight: 700;
+    scale: 1.05;
+}
+.contactinfo i:hover{
+    scale: 1.09;
+}
+
+#item2:hover, #item1:hover{
+    border-bottom: 2px solid #f4aa00; 
+}
+
+#signout{
+    transition: all .2s ease-in;
+}
+#signout:hover{
+    scale: 1.2;
+}
+
+
+
+
+
 
 /* Responsive */
 
