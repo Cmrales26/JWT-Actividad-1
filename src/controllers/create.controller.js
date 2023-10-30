@@ -15,26 +15,30 @@ export const adduser = async (req, res) => {
   const data = req.body;
 
   // Validations
-  if (data.password !== data.validate_password) {
+  if (data.password.trim() !== data.validate_password.trim()) {
     res.status(401).json({ error: 'Passwords are not equals' });
     return;
   }
 
-  if ((await existuser(data.user)) === true) {
+  if ((await existuser(data.user.trim())) === true) {
     res.status(401).json({ error: 'User already exists' });
     return;
   }
 
-  let encrypted_pass = cryppass(data.password)
-
+  let encrypted_pass = cryppass(data.password.trim())
   try {
-    const [rows] = await pool.query(
-      "INSERT INTO user_data (username, password, first_name, last_name, phone, email)  VALUES (?,?,?,?,?,?)",
-      [data.user, encrypted_pass, data.first_name, data.last_name, data.phone, data.email]
-    );
-    res.json({ redirect: "/" });
+
+    if (data.user.trim() === '' || data.password.trim() === '' || data.first_name.trim() === '' || data.last_name.trim() === '' || data.email.trim() === '' || data.phone.trim() === '' || data.validate_password.trim() === '') {
+        return res.status(401).json({error:'There are blank characters'})
+    } else {
+      const [rows] = await pool.query(
+        "INSERT INTO user_data (username, password, first_name, last_name, phone, email)  VALUES (?,?,?,?,?,?)",
+        [data.user.trim(), encrypted_pass, data.first_name.trim(), data.last_name.trim(), data.phone.trim(), data.email.trim()]
+      );
+      res.json({ redirect: "/" });
+    }
   } catch (error) {
-    return res.status(500).json({error: error.message});
+    return res.status(500).json({ error: error.message });
   }
 };
 
