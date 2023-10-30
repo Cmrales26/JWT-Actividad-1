@@ -198,8 +198,6 @@ body {
 #body-table {
     background-color: #ededed;
     height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
 }
 
 .header {
@@ -226,10 +224,7 @@ body {
 }
 
 .table {
-    max-height: 100vh;
-    overflow-y: auto;
     padding: 4rem 3rem 5rem 5rem;
-    scrollbar-gutter: stable;
 }
 
 #userTable {
@@ -259,8 +254,60 @@ body {
     color: white;
 }
 
-.alertwrongcredentials{
+.alertwrongcredentials {
     border-radius: 10px !important;
+}
+
+footer{
+    background-color: #ededed;
+}
+
+nav,
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 2rem;
+    padding: .5rem;
+    color: black;
+}
+
+.selected {
+    color: #f4aa00;
+    font-weight: bold;
+}
+
+.Contacme {
+    text-align: center;
+    padding: 2rem;
+    text-wrap: stable;
+}
+.active{
+    display: block;
+}
+
+.unactive{
+    display: none;
+}
+
+.contactinfo {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    & a{
+        text-decoration: none;
+    }
+    & i {
+        font-size: 35px;
+        margin-top: 1rem;
+        color: #f4aa00;
+        text-shadow: 0 0 10px rgb(198, 198, 198);
+    }
+}
+
+.laws {
+    text-align: center;
+    padding: .2rem;
 }
 
 /* Responsive */

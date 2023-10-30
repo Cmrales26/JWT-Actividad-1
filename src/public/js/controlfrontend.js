@@ -27,6 +27,7 @@ $('#login-form').on('submit', function (e) {
 });
 
 
+// FRONTEND SIGN UP
 $('#Signup-form').on('submit', function(e){
     e.preventDefault();
     $.ajax({   
@@ -52,4 +53,28 @@ $('#Signup-form').on('submit', function(e){
         }
     });
 });
-// FRONTEND SIGN UP
+
+
+const item1 = document.getElementById('item1');
+const item2 = document.getElementById('item2');
+const contactinfo1 = document.getElementById('NelsonMoralesInfo');
+const contactinfo2 = document.getElementById('AndreaDominguezInfo');
+
+item1.addEventListener('click', function() {
+    item1.classList.add('selected');
+    item2.classList.remove('selected');
+    contactinfo1.classList.add('active');
+    contactinfo1.classList.remove('unactive');
+    contactinfo2.classList.remove('active');
+    contactinfo2.classList.add('unactive');
+});
+
+item2.addEventListener('click', function() {
+    item2.classList.add('selected');
+    item1.classList.remove('selected');
+    contactinfo2.classList.add('active');
+    contactinfo2.classList.remove('unactive');
+    contactinfo1.classList.remove('active');
+    contactinfo1.classList.add('unactive');
+
+});

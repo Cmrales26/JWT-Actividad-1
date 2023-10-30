@@ -9,10 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <div class="singing-container">
+    <section class="singing-container">
         <div class="singing column-1">
             <h1>Sign in</h1>
             <div class="form">
@@ -41,7 +44,39 @@
             <p>New here?</p>
             <a href="/i/create">Sign up</a>
         </div>
-    </div>
+    </section>
+
+    
+    <footer>
+        <nav>
+            <ul>
+                <li id="item1" class="selected">Nelson Morales</li>
+                <li id="item2">Andrea Dominguez</li>
+            </ul>
+        </nav>
+        <section class="Contacme active" id="NelsonMoralesInfo">
+            <h3> Hi! 👋 Im <span style="color: #f4aa00;">Nelson Morales</span> - Contact me</h3>
+            <div class="contactinfo">
+                <a href="https://github.com/cmrales26" target="_blank" rel="noopener no-referrer"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/cmrales26/" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://twitter.com/Cmrales26" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-square-x-twitter"></i></a>
+            </div>
+        </section>
+        <section class="Contacme unactive" id="AndreaDominguezInfo">
+            <h3> Hi! 👋 Im <span style="color: #f4aa00;">Andrea Dominguez</span> - Contact me</h3>
+            <div class="contactinfo">
+                <a href="https://github.com/AndyDA1810" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/andrea-dom%C3%ADnguez-afanador-6a00a217b/" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </section>
+        <section class="laws">
+            <p> &copy Developed for academic purposes</p>
+        </section>
+    </footer>
 
 
     <script src="./js/controlfrontend.js"></script>
