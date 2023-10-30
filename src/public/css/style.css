@@ -322,6 +322,11 @@ ul {
 
 @media only screen and (max-width: 750px) {
 
+    .alertwrongcredentials {
+        font-size: 12px !important;
+        text-align: center !important;
+    }
+
     .singing-container,
     .singup-container {
         flex-wrap: nowrap;
