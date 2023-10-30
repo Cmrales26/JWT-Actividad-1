@@ -1,5 +1,5 @@
-// FRONTEND SIGN IN
 
+// FRONTEND SIGN IN
 $('#login-form').on('submit', function (e) {
     e.preventDefault();
     $.ajax({

@@ -22,7 +22,7 @@ export const adduser = async (req, res) => {
 
   if ((await existuser(data.user)) === true) {
     res.status(401).json({ error: 'User already exists' });
-    return
+    return;
   }
 
   let encrypted_pass = cryppass(data.password)
@@ -34,7 +34,7 @@ export const adduser = async (req, res) => {
     );
     res.json({ redirect: "/" });
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(500).json({error: error.message});
   }
 };
 

@@ -8,8 +8,8 @@
   <link rel="shortcut icon" href="/img/Favicon.svg" type="image/x-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>User Data</title>
 </head>
 
@@ -20,6 +20,9 @@
       <h3>JWT Data</h3>
     </div>
     <div class="cerrar">
+      <div class="User">
+        <h2 id="usernameinfo"></h2>
+      </div>
       <form action="/i/user/signup" method="post">
         <button id="signout" class="signout">Sign Out</button>
       </form>
@@ -65,6 +68,25 @@
 
 
   <script src="/js/controlfrontend.js"></script>
+  
+  <script>
+    const username = document.getElementById('usernameinfo');
+    const cookieString = document.cookie;
+    const cookieArray = cookieString.split(';');
+
+    let usernameValue = '';
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      const cookie = cookieArray[i].trim();
+      if (cookie.startsWith('username=')) {
+        usernameValue = cookie.substring('username='.length);
+        break;
+      }
+    }
+
+    username.innerHTML = usernameValue;
+
+  </script>
 </body>
 
 </html>

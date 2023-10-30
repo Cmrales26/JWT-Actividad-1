@@ -208,6 +208,12 @@ body {
 
     & .cerrar {
         padding: 2rem;
+        display: flex;
+        gap: 2rem;
+
+        & #usernameinfo{
+            color: white;
+        }
     }
 
     & .icon {
@@ -361,5 +367,30 @@ ul {
         max-width: 100%;
         width: 100%;
         font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+
+    .header {
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        /* background: red; */
+        flex-direction: column;
+    
+        & .cerrar {
+            padding: 1rem;
+            display: flex;
+            gap: 2rem;
+    
+            & #usernameinfo{
+                color: white;
+            }
+        }
+    
+        & .icon {
+            padding: 1rem;
+        }
     }
 }

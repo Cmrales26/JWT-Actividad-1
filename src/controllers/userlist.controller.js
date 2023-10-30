@@ -34,6 +34,7 @@ export const getInformation = async (req, res) => {
     jwt.verify(req.token, "secretkey", (error, authUser) => {
       if (error) {
         res.clearCookie("token");
+        res.clearCookie("username");
         return res.redirect("/");
 
       } else {

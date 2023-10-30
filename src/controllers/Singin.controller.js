@@ -21,7 +21,7 @@ export const getInterface = (req, res) => {
       }
     });
   } catch (error) {
-    res.send(error);
+    return res.status(500).json({error: error.message});
   }
 };
 
@@ -29,26 +29,25 @@ export const create_token = async (req, res) => {
   const data = req.body;
 
   const [rows] = await pool.query(
-    "SELECT * FROM user_data WHERE username = ?",
+    "SELECT id, username, first_name, last_name, phone, email FROM user_data WHERE username = ?",
     [data.user]
-  );
+  ); 
 
   if (!rows || !rows[0] || typeof rows[0].username === "undefined") {
     res.status(403).json({error: 'Wrong credential'});
   } else {
-    // obtengo la contraseña cifrada
+
     let hashedpass = await getpass(data.user);
 
-    // Valido igualdad
     if (decrypt(data.password, hashedpass)) {
-      // Token
-
+      
       if (typeof data.staysign === 'undefined') {
         jwt.sign({ rows }, "secretkey", { expiresIn: "120s"}, (error, token) => {
           if (error) {
             res.status(500).send("Can't create token");
           } else {
             res.cookie("token", token, { maxAge: 120000, httpOnly: true });
+            res.cookie("username", data.user, { maxAge: 120000, httpOnly: false });
             res.json({redirect: "/i/users"});
           }
         });
@@ -58,6 +57,7 @@ export const create_token = async (req, res) => {
             res.status(500).send("Can't create token");
           } else {
             res.cookie("token", token, { httpOnly: true });
+            res.cookie("username", data.user, { httpOnly: false });
             res.json({redirect: "/i/users"});
           }
         });
@@ -84,5 +84,6 @@ const decrypt = (password, hashed) => {
 
 export const logout = (req, res) => {
   res.clearCookie("token");
+  res.clearCookie("username"); 
   res.redirect('/')
 }
